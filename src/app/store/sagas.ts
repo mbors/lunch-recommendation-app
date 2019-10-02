@@ -1,7 +1,8 @@
 import { fork, all } from 'redux-saga/effects'
+import venuesSagas from './venues/venues.sagas'
 
 const sagas = [
-
+    venuesSagas
 ] as any[]
 
 // Register all your watchers

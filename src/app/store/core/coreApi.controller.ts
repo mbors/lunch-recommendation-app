@@ -7,17 +7,26 @@ export abstract class CoreApiController {
         this.axios = axios.create();
     }
 
-    baseUrl = ''
+    baseUrl = 'https://api.foursquare.com/v2/'
+
+    protected getHeaders(queryParameters?: { [key: string]: string | number | boolean }): any {
+        return {
+            headers: {
+                "Content-Type": "application/json"
+            },
+            ...queryParameters ? { params: queryParameters } : {}
+        };
+    }
 
     /**
      *
      * @param path
      * @param queryParameters
      */
-    async fetchRequest(path: string): Promise<any> {
+    async fetchRequest(path: string, queryParameters?: { [key: string]: string | number | boolean }): Promise<any> {
         try {
-            const res = await this.axios.get(`${this.baseUrl}${path}`);
-            return _.get(res, 'data', []);
+            const res = await this.axios.get(`${this.baseUrl}${path}`, this.getHeaders(queryParameters));
+            return _.get(res, 'data.response', []);
         } catch (error) {
             throw new Error(error)
         }
