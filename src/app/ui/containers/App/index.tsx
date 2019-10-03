@@ -8,8 +8,10 @@ import { connect } from 'react-redux';
 
 export interface AppProps {
     getVenues?: Function
+    venues?: any
 }
 @connect((state: RootState) => ({
+    venues: state.venuesListing.venues
 }),
     (dispatch: Dispatch): Pick<AppProps, 'getVenues'> => ({
         getVenues: bindActionCreators(
@@ -26,9 +28,13 @@ export class App extends React.Component<AppProps> {
         getVenues && getVenues()
     }
 
+
     render() {
+        console.log('venues ', this.props.venues)
+
         return (
             <div className="main-content">
+
             </div>
         )
     }
