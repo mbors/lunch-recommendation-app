@@ -1,40 +1,39 @@
 import * as React from 'react'
 import './style.css';
-import { VenuesActions } from '../../../store/venues/venues.actions';
-import { Utils } from '../../../utils';
 import { RootState } from 'app/store/state';
-import { bindActionCreators, Dispatch } from 'redux';
 import { connect } from 'react-redux';
-
+import { CustomizedVenue } from '../../../store/venues/venue.model';
+import { RestaurantInfo } from '../../../ui/components/RestaurantInfo';
+import InputSearch from '../../../ui/components/InputSearch';
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
+import ReduxToastr from 'react-redux-toastr';
 export interface AppProps {
-    getVenues?: Function
-    venues?: any
+    venues?: CustomizedVenue[]
 }
 @connect((state: RootState) => ({
     venues: state.venuesListing.venues
-}),
-    (dispatch: Dispatch): Pick<AppProps, 'getVenues'> => ({
-        getVenues: bindActionCreators(
-            Utils.omit(VenuesActions, 'Type'),
-            dispatch
-        ).getVenues,
-    })
-)
+}))
 
 export class App extends React.Component<AppProps> {
-
-    componentDidMount() {
-        const { getVenues } = this.props;
-        getVenues && getVenues()
-    }
-
-
     render() {
-        console.log('venues ', this.props.venues)
-
+        const { venues } = this.props
         return (
             <div className="main-content">
+                <h1>Lunchplace</h1>
+                <InputSearch />
+                {venues && venues.map((el, i) => <RestaurantInfo key={i} name={el.name} category={el.category} voting={el.rating} url={el.url}
 
+                />)}
+
+                <ReduxToastr
+                    timeOut={4000}
+                    newestOnTop={false}
+                    preventDuplicates
+                    position="top-right"
+                    transitionIn="fadeIn"
+                    transitionOut="fadeOut"
+                    progressBar
+                    closeOnToastrClick />
             </div>
         )
     }

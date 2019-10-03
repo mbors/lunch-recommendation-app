@@ -39,4 +39,11 @@ export interface VenueCategory {
     primary: boolean
 }
 
+export interface CustomizedVenue {
+    name: string, 
+    url?: string, 
+    category?: string,
+    rating?: number
+}
+
 

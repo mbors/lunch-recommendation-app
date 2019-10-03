@@ -2,9 +2,10 @@ import { handleActions } from 'redux-actions'
 import { AnyAction } from 'redux'
 import { VenuesState } from './venues.state';
 import { VenuesActions } from './venues.actions';
+import { CustomizedVenue } from './venue.model';
 
 const initialState: VenuesState = {
-    venues: [] as any[]
+    venues: [] as CustomizedVenue[]
 }
 
 export const setVenuesReducer = (state: VenuesState, action: AnyAction) => ({ venues: action.payload }) as VenuesState

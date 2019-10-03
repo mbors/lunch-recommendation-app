@@ -28,7 +28,10 @@ export abstract class CoreApiController {
             const res = await this.axios.get(`${this.baseUrl}${path}`, this.getHeaders(queryParameters));
             return _.get(res, 'data.response', []);
         } catch (error) {
-            throw new Error(error)
+            const errMsg = error.response.data.meta
+            const { errorDetail, code } = errMsg
+            throw { errorDetail, code }
         }
     }
+
 }

@@ -5,20 +5,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 export interface RestaurantInfoProps {
     name: string,
     isChosen?: boolean
-    voting: any
-    description: string
+    voting?: number
+    category?: string
+    url: string
 }
 
 export const RestaurantInfo = (props: RestaurantInfoProps) => {
-    const { name, isChosen, voting, description } = props;
+    const { name, isChosen, voting, category, url } = props;
 
     return (
         <div className="restaurant-info-container">
             <div className="restaurant-name">
-                <a href="">{name}</a>{isChosen && <FontAwesomeIcon icon="check" />}
+                <a href={url}>{name}</a>{isChosen && <FontAwesomeIcon icon="check" />}
             </div>
-            <p>{description}</p>
-            <p>{voting}</p>
+            {<p>{category || '---'}</p>}
+            <p>{voting || '---'}</p>
         </div>
     )
 }

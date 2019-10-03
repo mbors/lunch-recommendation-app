@@ -1,0 +1,16 @@
+.input-search-container {
+    display: flex;
+    align-items: center; 
+}
+
+.input-search:focus {
+    outline: none; 
+}
+
+.input-search-container .input-search {
+    margin-right: 2em; 
+    width: 200px; 
+    height: 35px; 
+    font-size: 16px;
+    color: #534BB2; 
+}

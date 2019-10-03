@@ -1,0 +1,14 @@
+.button {
+  background-color: #6e3792;
+  border-color: rgba(0, 0, 0, 0.3);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border-radius: 1.5em; 
+  font-size: 14px; 
+  padding: 0.6em 4em; 
+}
+
+.button:focus {
+  outline: none;
+}
+

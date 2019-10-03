@@ -21,20 +21,34 @@ export default class VenuesController extends CoreApiController {
     query = 'lunch'
     date = (new Date()).toISOString().replace(/-/g, '').split('T')[0]
 
-    fetchTrendingVenues = async (location: string) => {
+    fetchVenues = async (location: string) => {
         try {
             const queryParams = {
                 client_id: this.id,
                 client_secret: this.secret,
                 query: this.query,
                 ...location ? { near: location } : {},
-                v: this.date, 
+                v: this.date,
                 limit: this.limit
             }
             const results = await this.fetchRequest('venues/search', queryParams)
             return results && results.venues
         } catch (e) {
-            throw Error(e)
+            throw e
+        }
+    }
+
+    fetchVenueDetails = async (id: string) => {
+        try {
+            const queryParams = {
+                client_id: this.id,
+                client_secret: this.secret,
+                v: this.date
+            }
+            const details = (await this.fetchRequest(`venues/${id}`, queryParams)).venue
+            return details
+        } catch (e) {
+            throw e
         }
     }
 
