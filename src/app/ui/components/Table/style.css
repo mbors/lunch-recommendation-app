@@ -1,0 +1,35 @@
+.venues-table {
+    margin: 70px 0;
+    width: 65%;
+    border-collapse: collapse;
+  }
+  
+  .venues-table .table-row-heading .th-restaurant {
+    width: 23%;
+    height: 150px;
+  }
+  
+  .venues-table .table-row-heading .th-participants {
+      width: 30%; 
+      height: 150px;
+  }
+  
+  .venues-table,
+  .th-restaurant,
+  .th-participants,
+  .td-voter,
+  .td-choice {
+    border: 1px solid #6e379244;
+  }
+  
+  
+  .venues-table .table-row-voter .td-voter {
+      width: 30%;
+      height: 50px; 
+  }
+  
+  .venues-table .table-row-voter .td-choice {
+      width: 23%;
+      height: 50px; 
+  }
+  

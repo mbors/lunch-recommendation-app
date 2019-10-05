@@ -1,0 +1,11 @@
+.input-search:focus {
+    outline: none; 
+}
+
+.input-search {
+    margin-right: 2em; 
+    width: 200px; 
+    height: 35px; 
+    font-size: 16px;
+    color: #534BB2; 
+}

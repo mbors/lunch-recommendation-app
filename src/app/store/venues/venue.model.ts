@@ -40,8 +40,9 @@ export interface VenueCategory {
 }
 
 export interface CustomizedVenue {
+    id: string, 
     name: string, 
-    url?: string, 
+    url: string, 
     category?: string,
     rating?: number
 }

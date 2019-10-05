@@ -13,6 +13,7 @@ function* getVenues(action: Action<string>) {
             try {
                 const venueDetails = yield VenuesController.getInstance().fetchVenueDetails(venue.id)
                 const customizedVenue = {
+                    id: venue.id, 
                     name: venue.name,
                     category: venueDetails.categories && venueDetails.categories.length !== 0 ? venueDetails.categories[0].name : undefined,
                     url: venueDetails.shortUrl,
