@@ -1,9 +1,12 @@
-import { takeLatest, put } from 'redux-saga/effects';
+import { takeLatest, put, select } from 'redux-saga/effects';
 import { toastr } from 'react-redux-toastr';
 import VenuesController from './venues.controller';
 import { VenuesActions } from './venues.actions';
 import { Venue, CustomizedVenue } from './venue.model';
 import { Action } from 'redux-actions';
+import { Voter } from '../voting/voting.model';
+import { VotingActions } from '../voting/voting.actions';
+import { RootState } from '../reducers';
 
 function* getVenues(action: Action<string>) {
     try {
@@ -13,7 +16,7 @@ function* getVenues(action: Action<string>) {
             try {
                 const venueDetails = yield VenuesController.getInstance().fetchVenueDetails(venue.id)
                 const customizedVenue = {
-                    id: venue.id, 
+                    id: venue.id,
                     name: venue.name,
                     category: venueDetails.categories && venueDetails.categories.length !== 0 ? venueDetails.categories[0].name : undefined,
                     url: venueDetails.shortUrl,
@@ -21,20 +24,35 @@ function* getVenues(action: Action<string>) {
                 } as CustomizedVenue
                 customizedVenues.push(customizedVenue)
             } catch (error) {
-                console.log('toastr error', error.errorDetail)
                 toastr.error('Error', error.errorDetail)
             }
         }
         yield put(VenuesActions.setVenues(customizedVenues))
     } catch (error) {
-        console.log('toastr error', error.errorDetail)
-        console.log('error in saga ', error)
         toastr.error('Error', error.errorDetail)
     }
 }
 
+function* getVotedVenue(action: Action<{ voterId: string, choice: CustomizedVenue }>) {
+    if (!action.payload) {
+        return
+    }
+
+    const { voterId, choice } = action.payload;
+    yield put(VotingActions.setChoice({ voterId, choice }))
+    const voters = yield select((state: RootState) => state.voting.voters)
+
+    const chosenVenues = voters.map((el: Voter) => el.choice && el.choice.id)
+    const winner = chosenVenues.sort((a: string, b: string) =>
+        chosenVenues.filter((v: string) => v === a).length - chosenVenues.filter((v: string) => v === b).length).pop()
+    yield put(VenuesActions.setWinner(winner))
+
+}
+
+
 export default function* () {
     yield takeLatest(VenuesActions.Type.GET_VENUES, getVenues)
+    yield takeLatest(VenuesActions.Type.GET_VOTED_VENUE, getVotedVenue)
 }
 
 

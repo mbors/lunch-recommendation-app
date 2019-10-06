@@ -45,6 +45,7 @@ export interface CustomizedVenue {
     url: string, 
     category?: string,
     rating?: number
+    winner?: boolean
 }
 
 

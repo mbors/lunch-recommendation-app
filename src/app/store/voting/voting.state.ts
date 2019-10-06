@@ -1,6 +1,6 @@
-import { CustomizedVenue } from "../venues/venue.model";
+import { Voter } from "./voting.model";
 
 export interface VotingState {
-    voters?: string[],
-    choice?: CustomizedVenue
+    voters?: Voter[],
+    rowsCount: number
 }
