@@ -5,7 +5,8 @@ import './style.css';
 import { Voter } from '../../../../../store/voting/voting.model';
 import { useDispatch } from 'react-redux';
 import { VenuesActions } from '../../../../../store/venues/venues.actions';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
 export interface TableBodyProps {
     venues: CustomizedVenue[]
     voters: Voter[]
@@ -19,12 +20,14 @@ export const TableBody = (props: TableBodyProps) => {
             {voters.map((el, i) =>
                 <tr key={nextId('tr-id-')} className="table-row-voter">
                     <td key={nextId('td-id-')} className="td-voter">
-                        <span>{el.name}</span>
+                        <span className="voters-name">{el.name}</span>
                     </td>
                     {venues.map(element =>
                         <td
                             onClick={() => dispatch(VenuesActions.getVotedVenue({ voterId: el.id, choice: element }))}
-                            className={`td-choice ${el.choice && el.choice.id === element.id ? 'active' : ''}`} key={element.id}><div className="ticked-box"></div></td>)}
+                            className={`td-choice ${el.choice && el.choice.id === element.id ? 'active' : ''}`} key={element.id}><div className="ticked-box">
+                               { el.choice && el.choice.id === element.id && <FontAwesomeIcon icon={faCheck}/>}
+                            </div></td>)}
                 </tr>)}
         </tbody>
     )

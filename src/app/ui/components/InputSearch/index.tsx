@@ -8,7 +8,7 @@ import { Input } from '../../../ui/elements/Input';
 
 
 export const InputSearch = () => {
-    const [searchValue, setSearchValue] = useState('')
+    const [searchValue, setSearchValue] = useState()
     const dispatch = useDispatch()
 
     return (<div className="input-search-container">
@@ -19,6 +19,8 @@ export const InputSearch = () => {
                 e.keyCode == 13 && setSearchValue('')
             }}
             value={searchValue}
+            placeholder="Enter location"
+
         />
         <Button onClick={() => {
             dispatch(VenuesActions.getVenues(searchValue))

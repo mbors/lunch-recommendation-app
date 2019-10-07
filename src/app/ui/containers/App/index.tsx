@@ -8,6 +8,7 @@ import ReduxToastr from 'react-redux-toastr';
 import { Table } from '../../../ui/components/Table';
 import { InputAdd } from '../../../ui/components/InputAdd';
 import { Voter } from '../../../store/voting/voting.model';
+import './style.css';
 
 export const App = () => {
     const venues: CustomizedVenue[] | undefined = useSelector((state: RootState) => state.venuesListing.venues)
@@ -15,7 +16,7 @@ export const App = () => {
 
     return (
         <div className="main-content">
-            <h1>Lunchplace</h1>
+            <h1 className="app-heading">Lunchplace</h1>
             <InputSearch />
             {venues &&
                 <React.Fragment>
