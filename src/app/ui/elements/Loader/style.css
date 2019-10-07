@@ -1,0 +1,36 @@
+.loader-container {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(201, 196, 196, 0.13);
+}
+
+.loader {
+    border: 1em solid transparent; 
+    border-top: 1em solid #dec8ec; 
+    border-radius: 50%;    
+    width: 4em;
+    height: 4em;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
+    animation: spin 1.2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

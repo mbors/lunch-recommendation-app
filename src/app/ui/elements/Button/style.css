@@ -5,7 +5,8 @@
   color: #fff;
   border-radius: 1.5em; 
   font-size: 14px; 
-  padding: 0.6em 4em; 
+  padding: 0.6em 4em;
+  cursor: pointer; 
 }
 
 .button:focus {

@@ -7,9 +7,11 @@ import { Action } from 'redux-actions';
 import { Voter } from '../voting/voting.model';
 import { VotingActions } from '../voting/voting.actions';
 import { RootState } from '../reducers';
+import { LoaderAction } from '../../ui/elements/Loader/redux/loader.actions';
 
 function* getVenues(action: Action<string>) {
     try {
+        yield put(LoaderAction.setVisbility(true))
         const venues: Venue[] = yield VenuesController.getInstance().fetchVenues(action.payload)
         const customizedVenues: CustomizedVenue[] = []
         for (const venue of venues) {
@@ -31,6 +33,7 @@ function* getVenues(action: Action<string>) {
     } catch (error) {
         toastr.error('Error', error.errorDetail)
     }
+    yield put(LoaderAction.setVisbility(false))
 }
 
 function* getVotedVenue(action: Action<{ voterId: string, choice: CustomizedVenue }>) {

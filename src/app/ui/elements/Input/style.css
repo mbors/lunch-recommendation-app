@@ -1,16 +1,16 @@
 .input-search:focus {
-    outline: none; 
+  outline: none;
 }
 
 .input-search {
-    margin-right: 2em; 
-    padding-left: 10px;
-    width: 250px; 
-    height: 35px; 
-    font-size: 16px;
-    color: #534BB2; 
+  margin-right: 2em;
+  padding-left: 10px;
+  width: 250px;
+  height: 35px;
+  font-size: 16px;
+  color: #534bb2;
 }
 
-.input-search::placeholder{
-    color: rgba(128, 128, 128, 0.38); 
+.input-search::placeholder {
+  color: rgba(128, 128, 128, 0.38);
 }

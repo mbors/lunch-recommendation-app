@@ -9,11 +9,13 @@ import { Table } from '../../../ui/components/Table';
 import { InputAdd } from '../../../ui/components/InputAdd';
 import { Voter } from '../../../store/voting/voting.model';
 import './style.css';
+import { Loader } from '../../../ui/elements/Loader';
 
 export const App = () => {
     const venues: CustomizedVenue[] | undefined = useSelector((state: RootState) => state.venuesListing.venues)
     const voters: Voter[] | undefined = useSelector((state: RootState) => state.voting.voters) || []
-
+    const loaderVisibility: boolean = useSelector((state: RootState) => state.ui.loader.visibility)
+    
     return (
         <div className="main-content">
             <h1 className="app-heading">Lunchplace</h1>
@@ -24,6 +26,8 @@ export const App = () => {
                     <InputAdd />
                 </React.Fragment>
             }
+            <Loader visible={loaderVisibility} />
+
             <ReduxToastr
                 timeOut={4000}
                 newestOnTop={false}

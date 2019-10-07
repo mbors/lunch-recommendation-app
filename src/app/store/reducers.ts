@@ -4,11 +4,13 @@ import { venuesReducer } from './venues/venues.reducers'
 export { RootState }
 import {reducer as toastrReducer} from 'react-redux-toastr'
 import { votingReducer } from './voting/voting.reducers'
+import { uiReducers } from './components/components.reducers'
 
 
 export  const rootReducer = combineReducers<RootState>({
     venuesListing: venuesReducer,
     toastr: toastrReducer, 
     voting: votingReducer, 
+    ui: uiReducers
 })
 
