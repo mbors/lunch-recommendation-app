@@ -33,15 +33,14 @@ function* getVenues(action: Action<string>) {
     }
 }
 
-function* getVotedVenue(action: Action<{ voterIndex: string, choice: CustomizedVenue }>) {
+function* getVotedVenue(action: Action<{ voterId: string, choice: CustomizedVenue }>) {
     if (!action.payload) {
         return
     }
 
-    const { voterIndex, choice } = action.payload;
+    const { voterId, choice } = action.payload;
+    yield put(VotingActions.setChoice({ voterId, choice }))
     const voters = yield select((state: RootState) => state.voting.voters)
-
-    yield put(VotingActions.setChoice({ voterId: voters[voterIndex].id, choice }))
 
     const chosenVenues = voters.map((el: Voter) => el.choice && el.choice.id)
     const winner = chosenVenues.sort((a: string, b: string) =>

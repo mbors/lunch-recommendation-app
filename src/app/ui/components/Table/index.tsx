@@ -1,23 +1,21 @@
 import * as React from 'react';
 import { CustomizedVenue } from '../../../store/venues/venue.model';
 import { TableHeader } from './elements/TableHeader';
-import { TableRow } from './elements/TableBody';
+import { TableBody } from './elements/TableBody';
 import './style.css';
+import { Voter } from '~app/store/voting/voting.model';
 
 export interface TableProps {
     venues: CustomizedVenue[]
-    votingRows: number
+    voters: Voter[]
 }
 
 export const Table = (props: TableProps) => {
-    const { venues, votingRows } = props;
+    const { venues, voters } = props;
     return (
         <table className="venues-table">
             <TableHeader venues={venues} />
-            {[...Array(votingRows)].map((_, i) =>
-                <TableRow
-                    venuesLength={venues.length}
-                />)}
+            <TableBody voters={voters} venues={venues}/>
         </table>
     )
 }

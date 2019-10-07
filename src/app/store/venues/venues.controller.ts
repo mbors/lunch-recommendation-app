@@ -15,8 +15,8 @@ export default class VenuesController extends CoreApiController {
         return VenuesController._instance
     }
 
-    id = 'YVBNFWOWOLWI4PGDMYBHD1F53LXUUHNG0NLA5UVSIIMBCSZK'
-    secret = 'ZDVXTWURZSOHM4VBJABYYD2IBX1MWPXXT2OVRAIAJQQ4WVXZ'
+    id = 'IRUDNAIHGDV1YEZJHXKYQZHUIVF54GPMU4MK0ABYKBQAU3O2'
+    secret = 'EOD5WGZPKQE0W4BA0YJXBMK1SGTPESFOVIEB1L31CIH5LRPY'
     limit = 3
     query = 'lunch'
     date = (new Date()).toISOString().replace(/-/g, '').split('T')[0]

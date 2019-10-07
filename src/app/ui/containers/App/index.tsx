@@ -1,20 +1,17 @@
 import * as React from 'react'
 import { RootState } from 'app/store/state';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { CustomizedVenue } from '../../../store/venues/venue.model';
 import { InputSearch } from '../../../ui/components/InputSearch';
 import 'react-redux-toastr/lib/css/react-redux-toastr.min.css';
 import ReduxToastr from 'react-redux-toastr';
-import { Button } from '../../../ui/elements/Button';
-import { VotingActions } from '../../../store/voting/voting.actions';
 import { Table } from '../../../ui/components/Table';
-import nextId from "react-id-generator";
+import { InputAdd } from '../../../ui/components/InputAdd';
+import { Voter } from '../../../store/voting/voting.model';
 
 export const App = () => {
     const venues: CustomizedVenue[] | undefined = useSelector((state: RootState) => state.venuesListing.venues)
-    const votingRows: number = useSelector((state: RootState) => state.voting.votingRows)
-
-    const dispatch = useDispatch()
+    const voters: Voter[] | undefined = useSelector((state: RootState) => state.voting.voters) || []
 
     return (
         <div className="main-content">
@@ -22,8 +19,8 @@ export const App = () => {
             <InputSearch />
             {venues &&
                 <React.Fragment>
-                    <Table venues={venues} votingRows={votingRows} />
-                    <Button onClick={() => dispatch(VotingActions.setVoter({ id: nextId('voted-id-'), name: '' }))} label="Add participant" />
+                    <Table voters={voters} venues={venues} />
+                    <InputAdd />
                 </React.Fragment>
             }
             <ReduxToastr

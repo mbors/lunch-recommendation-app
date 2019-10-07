@@ -3,11 +3,11 @@ import { useState } from 'react';
 import { Button } from '../../../ui/elements/Button';
 import './style.css';
 import { useDispatch } from 'react-redux';
-import { VenuesActions } from '../../../store/venues/venues.actions';
 import { Input } from '../../../ui/elements/Input';
+import nextId from 'react-id-generator';
+import { VotingActions } from '../../../store/voting/voting.actions';
 
-
-export const InputSearch = () => {
+export const InputAdd = () => {
     const [searchValue, setSearchValue] = useState('')
     const dispatch = useDispatch()
 
@@ -15,14 +15,13 @@ export const InputSearch = () => {
         <Input
             onChange={(e: any) => setSearchValue(e.target.value)}
             onKeyDown={(e: any) => {
-                e.keyCode == 13 && dispatch(VenuesActions.getVenues(searchValue))
+                e.keyCode == 13 && dispatch(VotingActions.setVoter({ id: nextId('voted-id-'), name: searchValue }))
                 e.keyCode == 13 && setSearchValue('')
             }}
             value={searchValue}
         />
         <Button onClick={() => {
-            dispatch(VenuesActions.getVenues(searchValue))
-            setSearchValue('')
-        }} label="Search" />
+            dispatch(VotingActions.setVoter({ id: nextId('voted-id-'), name: searchValue }))
+            setSearchValue('')}} label="Add participant" />
     </div>)
 }
