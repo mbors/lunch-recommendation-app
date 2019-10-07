@@ -14,7 +14,10 @@ export const Table = (props: TableProps) => {
     return (
         <table className="venues-table">
             <TableHeader venues={venues} />
-            <TableRow venues={venues} votingRows={votingRows}/>
+            {[...Array(votingRows)].map((_, i) =>
+                <TableRow
+                    venuesLength={venues.length}
+                />)}
         </table>
     )
 }

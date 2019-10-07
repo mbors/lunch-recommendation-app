@@ -26,11 +26,17 @@ export const setVotersName = (state: VotingState, action: Action<{ voterIndex: n
     voters: state.voters && state.voters.map((el, id) => id === action.payload.voterIndex ? { ...el, ['name']: action.payload.name } : el)
 })
 
+export const setInputValue = (state: VotingState, action: Action<string>) => ({
+    ...state, 
+    inputValue: action.payload
+})
+
 export const votingReducer = handleActions<VotingState, any>(
     {
         [VotingActions.Type.SET_CHOICE]: addVotingReducer,
         [VotingActions.Type.SET_VOTER]: addVoterReducer,
-        [VotingActions.Type.SET_VOTERS_NAME]: setVotersName
+        [VotingActions.Type.SET_VOTERS_NAME]: setVotersName, 
+        [VotingActions.Type.SET_INPUT]: setInputValue
     },
     initialState
 )
