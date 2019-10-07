@@ -9,6 +9,6 @@ import { votingReducer } from './voting/voting.reducers'
 export  const rootReducer = combineReducers<RootState>({
     venuesListing: venuesReducer,
     toastr: toastrReducer, 
-    voting: votingReducer
+    voting: votingReducer, 
 })
 

@@ -6,29 +6,30 @@ import { Voter } from './voting.model';
 import { CustomizedVenue } from '../venues/venue.model';
 
 const initialState: VotingState = {
-    rowsCount: 0
+    votingRows: 0
 }
 
 export const addVoterReducer = (state: VotingState, action: Action<Voter>) => ({
     ...state,
-    voters: [...(state.voters || []), action.payload], 
-    rowsCount: state.rowsCount + 1
+    voters: [...(state.voters || []), action.payload],
+    votingRows: state.votingRows + 1
 })
 
 export const addVotingReducer = (state: VotingState, action: Action<{ voterId: string, choice: CustomizedVenue }>) => ({
     ...state,
     voters: state.voters && state.voters.map(el => el.id === action.payload.voterId ? { ...el, ['choice']: action.payload.choice } : el)
-})  
+})
 
-export const setVotersName = (state: VotingState, action: Action<{voterId: string, name: string}>) => ({
+export const setVotersName = (state: VotingState, action: Action<{ voterIndex: number, name: string }>) => 
+({
     ...state,
-    voters: state.voters && state.voters.map(el => el.id === action.payload.voterId ? { ...el, ['name']: action.payload.name } : el)
+    voters: state.voters && state.voters.map((el, id) => id === action.payload.voterIndex ? { ...el, ['name']: action.payload.name } : el)
 })
 
 export const votingReducer = handleActions<VotingState, any>(
     {
         [VotingActions.Type.SET_CHOICE]: addVotingReducer,
-        [VotingActions.Type.SET_VOTER]: addVoterReducer, 
+        [VotingActions.Type.SET_VOTER]: addVoterReducer,
         [VotingActions.Type.SET_VOTERS_NAME]: setVotersName
     },
     initialState
