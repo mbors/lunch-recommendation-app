@@ -14,3 +14,7 @@
 .input-search::placeholder {
   color: rgba(128, 128, 128, 0.38);
 }
+
+.input-search:valid {
+  background-color: #ffffff;
+}
