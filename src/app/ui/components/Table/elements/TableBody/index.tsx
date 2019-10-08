@@ -26,7 +26,7 @@ export const TableBody = (props: TableBodyProps) => {
                         <td
                             onClick={() => dispatch(VenuesActions.getVotedVenue({ voterId: el.id, choice: element }))}
                             className={`td-choice ${el.choice && el.choice.id === element.id ? 'active' : ''}`} key={element.id}><div className="ticked-box">
-                               { el.choice && el.choice.id === element.id && <FontAwesomeIcon icon={faCheck}/>}
+                                {el.choice && el.choice.id === element.id && <FontAwesomeIcon icon={faCheck} />}
                             </div></td>)}
                 </tr>)}
         </tbody>

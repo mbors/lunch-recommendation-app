@@ -17,10 +17,15 @@ export const addVotingReducer = (state: VotingState, action: Action<{ voterId: s
     voters: state.voters && state.voters.map(el => el.id === action.payload.voterId ? { ...el, ['choice']: action.payload.choice } : el)
 })
 
+export const cleanVoters = (state: VotingState) => ({
+    voters: [] 
+})
+
 export const votingReducer = handleActions<VotingState, any>(
     {
         [VotingActions.Type.SET_CHOICE]: addVotingReducer,
         [VotingActions.Type.SET_VOTER]: addVoterReducer,
+        [VotingActions.Type.CLEAN_VOTERS]: cleanVoters
     },
     initialState
 )

@@ -19,7 +19,7 @@ export const InputAdd = () => {
                 e.keyCode == 13 && setSearchValue('')
             }}
             value={searchValue}
-            placeholder="Kate"
+            placeholder="Enter name"
         />
         <Button onClick={() => {
             dispatch(VotingActions.setVoter({ id: nextId('voted-id-'), name: searchValue }))

@@ -4,5 +4,8 @@
     display: flex; 
     align-items: flex-end;
     justify-content: flex-end; 
+}
 
+.table-row-heading .th-participants .participants-container span {
+    margin: 8px;
 }

@@ -44,8 +44,8 @@ function* getVotedVenue(action: Action<{ voterId: string, choice: CustomizedVenu
     const { voterId, choice } = action.payload;
     yield put(VotingActions.setChoice({ voterId, choice }))
     const voters = yield select((state: RootState) => state.voting.voters)
-
     const chosenVenues = voters.map((el: Voter) => el.choice && el.choice.id)
+
     const winner = chosenVenues.sort((a: string, b: string) =>
         chosenVenues.filter((v: string) => v === a).length - chosenVenues.filter((v: string) => v === b).length).pop()
     yield put(VenuesActions.setWinner(winner))
